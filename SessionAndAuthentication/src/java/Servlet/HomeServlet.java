@@ -19,11 +19,18 @@ public class HomeServlet extends HttpServlet {
          HttpSession session = request.getSession();
          
          String name = (String) session.getAttribute("username");
-        
+         
+        if(name != null && name != "") {
+         
          request.setAttribute("name", name);
          
         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp")
                 .forward(request,response); 
         }
+        
+     else {
+            response.sendRedirect("/SessionAndAuthentication/login");
+    }
+}
                 
 }
